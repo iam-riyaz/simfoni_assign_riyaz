@@ -1,17 +1,16 @@
-import Navbar from "./components/Navbar"
-
+import Navbar from "./components/Navbar";
+import { AllRoutes } from "./routes/Allroutes";
 
 function App() {
- 
-
   return (
     <>
-    <div>
-      <Navbar/>
-    </div>
-      
-    </>
-  )
-}
+      <div className="bg-zinc-100">
+        <Navbar/>
+        
+        <AllRoutes/>
 
-export default App
+      </div>
+    </>
+  );
+}
+export default App;

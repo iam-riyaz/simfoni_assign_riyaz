@@ -5,13 +5,13 @@ import { SortBox } from "./SortBox";
 export const SearchAndFilterAndSort = () => {
   return (
     <>
-      <div className="flex justify-between pb-4">
-        <div className="w-8/12">
+      <div className="lg:flex  lg:justify-between pb-4">
+        <div className="lg:w-8/12 w-full">
           <SearchBox />
         </div>
-        <div className="flex ml-10 w-1/3">
-          <FilterBox />
-          <FilterBox/>
+        <div className="hidden lg:flex lg:ml-10 lg:w-1/3 ">
+          <FilterBox  />
+          <SortBox/>
           
         </div>
       </div>

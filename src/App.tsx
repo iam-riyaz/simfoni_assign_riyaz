@@ -4,7 +4,7 @@ import { AllRoutes } from "./routes/Allroutes";
 function App() {
   return (
     <>
-      <div className="bg-zinc-100">
+      <div>
         <Navbar/>
         
         <AllRoutes/>

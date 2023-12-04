@@ -227,7 +227,7 @@ export default function Navbar() {
                   </div>
 
                   <div>
-                    <button className="border-2 py-1 px-2 rounded-lg border-teal-600  font-bold text-teal-600">Help</button>
+                    <button className="  border-2 py-1 px-2 rounded-lg border-teal-600  font-bold text-teal-600">Help</button>
                   </div>
                 </div>
                  {/* side icons */}

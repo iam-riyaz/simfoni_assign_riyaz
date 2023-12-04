@@ -9,6 +9,7 @@ export const HomePage = () => {
             
           <SearchAndFilterAndSort />
           
+          
         </div>
       </div>
     </>

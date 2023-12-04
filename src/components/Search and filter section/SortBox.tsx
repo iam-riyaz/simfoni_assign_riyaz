@@ -20,7 +20,7 @@ export const SortBox=()=>{
         </div>
 
         {/* dropdown component */}
-        {isOpen?<div className=" ">
+        {isOpen?<div className="">
             <SortDropdown/>
         </div>:null}
         </div>

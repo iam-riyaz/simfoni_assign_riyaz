@@ -1,5 +1,6 @@
+import { CategoriesSection } from "../components/Categories";
 import { HeroCarousel } from "../components/HeroCarousel";
-import Navbar from "../components/Navbar";
+import { PeopleSearchFor } from "../components/PeopleSearchFor";
 import { SearchAndFilterAndSort } from "../components/Search and filter section";
 
 export const HomePage = () => {
@@ -8,9 +9,12 @@ export const HomePage = () => {
       <div className="pt-4">
         <div className="px-4">
           <SearchAndFilterAndSort />
-          
+          <CategoriesSection/>
         </div>
-          {/* <HeroCarousel/> */}
+         <HeroCarousel/>
+         <div className="px-4 mt-4">
+         <PeopleSearchFor/>
+         </div>
       </div>
     </>
   );

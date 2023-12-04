@@ -1,4 +1,4 @@
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar.tsx";
 import { AllRoutes } from "./routes/Allroutes";
 
 function App() {

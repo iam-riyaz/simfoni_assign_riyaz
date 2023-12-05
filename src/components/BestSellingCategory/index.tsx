@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const BestSellingCategory = () => {
 
   const [category, setCategory] = useState([]);
+  const navigate= useNavigate()
 
   const { data, loading, error } = useSelector((state: any) => state);
   useEffect(() => {
@@ -13,7 +15,7 @@ export const BestSellingCategory = () => {
    }, [data, loading, error]);
 
    const handleClick=(e:any)=>{
-
+         navigate("/list")
     console.log({e})
 
    }

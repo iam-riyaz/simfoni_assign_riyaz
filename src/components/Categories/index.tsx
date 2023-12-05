@@ -15,6 +15,9 @@ export const CategoriesSection = () => {
     const isPresent = localStorage.getItem("persist-sotre");
     if (!isPresent) {
       dispatch(fetchData());
+      
+    }
+    else{
     }
   }, [dispatch]);
 

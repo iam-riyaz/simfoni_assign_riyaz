@@ -12,18 +12,21 @@ export const CategoriesSection = () => {
   const { data, loading, error } = useSelector((state: any) => state);
 
   useEffect(() => {
-    dispatch(fetchData());
+    const isPresent = localStorage.getItem("persist-sotre");
+    if (!isPresent) {
+      dispatch(fetchData());
+    }
   }, [dispatch]);
-  
+
   useEffect(() => {
-    if (!loading && !error && data?.response?.categoryAppData?.departmentCategories) {
+    if (
+      !loading &&
+      !error &&
+      data?.response?.categoryAppData?.departmentCategories
+    ) {
       setCategory(data.response.categoryAppData.departmentCategories);
     }
   }, [data, loading, error]);
-  
-
-  
-
 
   return (
     <>
@@ -39,8 +42,8 @@ export const CategoriesSection = () => {
 
             {/* other categories */}
 
-            {category.slice(0, 5).map((e: any,i) => (
-              <div className=" hidden lg:flex lg:items-center" key={i+1}>
+            {category.slice(0, 5).map((e: any, i) => (
+              <div className=" hidden lg:flex lg:items-center" key={i + 1}>
                 <p>{e.displayName}</p>
                 <ChevronDownIcon className="h-3" style={{ strokeWidth: "2" }} />
               </div>

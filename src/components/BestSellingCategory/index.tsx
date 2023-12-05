@@ -12,6 +12,12 @@ export const BestSellingCategory = () => {
      }
    }, [data, loading, error]);
 
+   const handleClick=(e:any)=>{
+
+    console.log({e})
+
+   }
+
   return (
     <>
       <div className="w-full pb-4">
@@ -20,7 +26,7 @@ export const BestSellingCategory = () => {
           <div className="grid lg:grid-cols-5 grid-cols-2 gap-10 gap-y-3  lg:gap-30 ">
             {category.slice(0,5).map((e:any)=>{
               return(
-                <div className="border p-2 flex flex-col items-center justify-center rounded-lg shadow-md cursor-pointer">
+                <div onClick={()=>handleClick(e)} className="border p-2 flex flex-col items-center justify-center rounded-lg shadow-md cursor-pointer">
                 <img
                   src="https://www.bigbasket.com/media/uploads/p/l/10000074-2_2-fresho-cauliflower.jpg?tr=w-640,q=80"
                   alt=""

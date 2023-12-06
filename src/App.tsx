@@ -1,20 +1,24 @@
+import { Loading } from "./components/Loading/Loading.tsx";
+import { Skeleton } from "./components/Loading/Skeleton.tsx";
 import Navbar from "./components/Navbar/Navbar.tsx";
-import { fetchData } from "./redux/action.ts";
+import { fetchAllProducts, fetchData } from "./redux/action.ts";
 import { AllRoutes } from "./routes/Allroutes";
-import {useEffect} from "react"
+import {useEffect, useState} from "react"
 import {useDispatch} from "react-redux"
 
 function App() {
 
   const dispatch = useDispatch();
+  const [isLoading,setIsLoading]=useState(true)
   
   useEffect(()=>{
     const isPresent = localStorage.getItem("persist:persist-sotre");
     if (!isPresent) {
+      dispatch(fetchAllProducts())
       dispatch(fetchData());
       
     }
-    
+    setIsLoading(false)
       
   },[])
 
@@ -23,7 +27,7 @@ function App() {
       <div>
         <Navbar/>
         
-        <AllRoutes/>
+        {!isLoading?<AllRoutes/>:<Skeleton/>}
 
       </div>
     </>

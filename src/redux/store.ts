@@ -9,7 +9,7 @@ import storage from "redux-persist/lib/storage";
 const persistConfig= {
     key:"persist-sotre",
     storage,
-}
+} 
 
 const persistedReducer=persistReducer(persistConfig,reducer)
 

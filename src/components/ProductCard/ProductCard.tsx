@@ -4,25 +4,27 @@ import { useEffect, useState } from "react";
 interface ProductCardProps {
   name?: string;
   brand?: string;
-  price?:string
+  price?: string;
+  imgUrl?: string;
 }
 
-export const ProductCard:React.FC<ProductCardProps> = ({brand,name,price}) => {
+export const ProductCard: React.FC<ProductCardProps> = ({
+  brand,
+  name,
+  price,
+  imgUrl,
+}) => {
+  const [title, setTitle] = useState(` ${name}`);
+  imgUrl = `https://assets.wfcdn.com/im/92129523/resize-h800-w800%5Ecompr-r85/2296/${imgUrl}/demo.jpg`;
 
-
-const [title,setTitle]= useState(` ${name}`)
-
-useEffect(
-  ()=>{
-  let maxLength=45
-  if (title.length <= maxLength) {
-    setTitle(title)
-  } else {
-    setTitle( title.substring(0, maxLength) + '...')
-  }
-},[])
-
-
+  useEffect(() => {
+    let maxLength = 45;
+    if (title.length <= maxLength) {
+      setTitle(title);
+    } else {
+      setTitle(title.substring(0, maxLength) + "...");
+    }
+  }, []);
 
   return (
     <>
@@ -32,12 +34,8 @@ useEffect(
       >
         <div className=" flex flex-col    h-full">
           <div className="">
-            <div className="flex justify-center bg-gray-100 rounded-lg  h-36  w-full  ">
-              <img
-                className="h-full"
-                src="https://assets.wfcdn.com/im/36955666/resize-h500-w500%5Ecompr-r85/2213/221369857/default_name.jpg"
-                alt="img"
-              />
+            <div className="flex p-2 justify-center bg-gray-200 rounded-lg  h-36  w-full  ">
+              <img className="h-full rounded-lg" src={imgUrl} alt="product image" />
             </div>
             <div className="">
               <p className="text-lg font-semibold text-gray-700 leading-tight">
@@ -50,7 +48,9 @@ useEffect(
                 <span className="text-xl font-bold">${price}</span>
                 <span className="text-gray-400">/each</span>
               </div>
-              <p className="text-teal-500 font-semibold text-sm">Saving % 4.6</p>
+              <p className="text-teal-500 font-semibold text-sm">
+                Saving % 4.6
+              </p>
               <div className="text-sm leading-6">
                 <span className="font-bold text-gray-700">Supplier:</span>
                 <span> {brand}</span>
@@ -73,8 +73,7 @@ useEffect(
               </div>
             </div>
             <div className=" bg-teal-600 text-white font-semibold flex justify-center py-2 rounded-lg mt-2">
-                <p>Add To Cart</p>
-
+              <p>Add To Cart</p>
             </div>
           </div>
         </div>

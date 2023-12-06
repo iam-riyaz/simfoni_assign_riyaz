@@ -6,11 +6,15 @@ import {
   FETCH_DATA_REQUEST_CATEGORY_PRODUCT,
   FETCH_DATA_SUCCESS_CATEGORY_PRODUCT,
   FETCH_DATA_FAILURE_CATEGORY_PRODUCT,
+  FETCH_DATA_REQUEST_ALL_PRODUCT,
+FETCH_DATA_SUCCESS_ALL_PRODUCT,
+FETCH_DATA_FAILURE_ALL_PRODUCT
 } from "./action.ts";
 
 interface State {
   productList: any[];
-  data: any[]; // Adjust the type according to your API response structure
+  data: any[]; 
+  allProducts:any[]
   loading: boolean;
   error: string | null;
 }
@@ -18,6 +22,7 @@ interface State {
 const initialState: State = {
   productList: [],
   data: [],
+  allProducts:[],
   loading: false,
   error: null,
 };
@@ -34,7 +39,13 @@ const reducer = (state = initialState, action: any) => {
       return { ...state, loading: true, error: null };
     case FETCH_DATA_SUCCESS_CATEGORY_PRODUCT:
       return { ...state, loading: false, productList:action.payload, error: null };
-    case FETCH_DATA_REQUEST_CATEGORY_PRODUCT:
+    case FETCH_DATA_FAILURE_CATEGORY_PRODUCT:
+      return { ...state, loading: false, error: action.payload };
+      case FETCH_DATA_REQUEST_ALL_PRODUCT:
+      return { ...state, loading: true, error: null };
+    case FETCH_DATA_SUCCESS_ALL_PRODUCT:
+      return { ...state, loading: false, allProducts:action.payload, error: null };
+    case FETCH_DATA_FAILURE_ALL_PRODUCT:
       return { ...state, loading: false, error: action.payload };
     default:
       return state;

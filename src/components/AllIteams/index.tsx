@@ -10,10 +10,12 @@ export const AllIteams = () => {
             <p className="text-xl font-bold py-5 ">ALL ITEMS</p>
 
             <div className="flex cursor-pointer ">
-            <p className="inline text-teal-600 text-xs font-bold py-5">show more  </p>
-            <div className="inline text-teal-600 text-xs font-bold py-6 text-auto">
-            <ChevronRightIcon className="h-3"/>
-            </div>
+              <p className="inline text-teal-600 text-xs font-bold py-5">
+                show more{" "}
+              </p>
+              <div className="inline text-teal-600 text-xs font-bold py-6 text-auto">
+                <ChevronRightIcon className="h-3" />
+              </div>
             </div>
           </div>
 

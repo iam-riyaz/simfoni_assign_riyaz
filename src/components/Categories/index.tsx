@@ -11,15 +11,7 @@ export const CategoriesSection = () => {
   const dispatch = useDispatch();
   const { data, loading, error } = useSelector((state: any) => state);
 
-  useEffect(() => {
-    const isPresent = localStorage.getItem("persist-sotre");
-    if (!isPresent) {
-      dispatch(fetchData());
-      
-    }
-    else{
-    }
-  }, [dispatch]);
+  
 
   useEffect(() => {
     if (

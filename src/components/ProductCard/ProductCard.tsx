@@ -1,10 +1,33 @@
 import { HeartIcon } from "@heroicons/react/20/solid";
+import { useEffect, useState } from "react";
 
-export const ProductCard = () => {
+interface ProductCardProps {
+  name?: string;
+  brand?: string;
+  price?:string
+}
+
+export const ProductCard:React.FC<ProductCardProps> = ({brand,name,price}) => {
+
+
+const [title,setTitle]= useState(` ${name}`)
+
+useEffect(
+  ()=>{
+  let maxLength=45
+  if (title.length <= maxLength) {
+    setTitle(title)
+  } else {
+    setTitle( title.substring(0, maxLength) + '...')
+  }
+},[])
+
+
+
   return (
     <>
       <div
-        style={{ height: "450px" }}
+        style={{ height: "480px" }}
         className="w-full   rounded-lg border border-gray-200 shadow-lg p-3 cursor-pointer"
       >
         <div className=" flex flex-col    h-full">
@@ -18,19 +41,19 @@ export const ProductCard = () => {
             </div>
             <div className="">
               <p className="text-lg font-semibold text-gray-700 leading-tight">
-                Lorem ipsum dolor sit amet.
+                {title}
               </p>
               <p className="font-semibold text-xs leading-5 text-gray-400">
                 1234580
               </p>
               <div className="leading-10">
-                <span className="text-xl font-bold">$768</span>
+                <span className="text-xl font-bold">${price}</span>
                 <span className="text-gray-400">/each</span>
               </div>
               <p className="text-teal-500 font-semibold text-sm">Saving % 4.6</p>
               <div className="text-sm leading-6">
                 <span className="font-bold text-gray-700">Supplier:</span>
-                <span> INT movers</span>
+                <span> {brand}</span>
               </div>
               <div className="text-sm leading-6">
                 <span className="font-bold text-gray-700">Delivery By:</span>

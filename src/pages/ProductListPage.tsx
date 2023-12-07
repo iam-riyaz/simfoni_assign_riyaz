@@ -36,40 +36,39 @@ export const ProductListPage: React.FC = () => {
     }
   }, [productList, allProducts, loading, error]);
 
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const options = {
+        method: "GET",
+        url: "https://wayfair.p.rapidapi.com/products/list",
+        params: {
+          categoryId: "214970",
+          itemsPerPage: "20",
+          page: page,
+        },
+        headers: {
+          "X-RapidAPI-Key":
+            apikey,
+          "X-RapidAPI-Host": "wayfair.p.rapidapi.com",
+        },
+      };
+
+      const response = await axios.request(options);
+      setProductListData((prevProducts: any) => [
+        ...prevProducts,
+        ...response.data.response.data.category.browse.products,
+      ]);
+      setIsLoading(false)
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const options = {
-          method: "GET",
-          url: "https://wayfair.p.rapidapi.com/products/list",
-          params: {
-            categoryId: "214970",
-            itemsPerPage: "20",
-            page: page,
-          },
-          headers: {
-            "X-RapidAPI-Key":
-              apikey,
-            "X-RapidAPI-Host": "wayfair.p.rapidapi.com",
-          },
-        };
-
-        const response = await axios.request(options);
-        setProductListData((prevProducts: any) => [
-          ...prevProducts,
-          ...response.data.response.data.category.browse.products,
-        ]);
-        setPage((prevPage) => prevPage + 1);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    // this function is calling in loop 
-    // fetchData();
+ fetchData()
     console.log("hit")
   },[page]);
 
@@ -82,9 +81,9 @@ export const ProductListPage: React.FC = () => {
     const clientHeight = document.documentElement.clientHeight || window.innerHeight;
     console.log({scrollHeight,clientHeight,scrollTop})
     console.log({page})
-    if (scrollTop + clientHeight >= scrollHeight - 10000 && !loading) {
+    if (scrollTop + clientHeight+1 >= scrollHeight && !loading) {
       // console.log({page})
-      setPage((prevPage) => prevPage + 1);
+      setPage((prevPage) => prevPage + 1); 
     }
   };
 
@@ -93,7 +92,7 @@ export const ProductListPage: React.FC = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [handleScroll]);
+  }, []);
 
   return (
     <>

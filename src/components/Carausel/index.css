@@ -1,0 +1,10 @@
+.slick-prev:before, .slick-next:before {
+    color:teal; 
+    height: 100px;
+  }
+
+.slick-slide{
+    width: 220px;
+    margin-left: 17px;
+    margin-right: 16px;
+}

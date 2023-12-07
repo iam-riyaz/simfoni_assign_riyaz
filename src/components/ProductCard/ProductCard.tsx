@@ -61,6 +61,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               </div>
             </div>
           </div>
+          {/* add to cart button */}
           <div className=" mt-auto  w-full ">
             <div className="flex justify-between">
               <div className="flex border-2 font-semibold text-gray-700 border-gray-200 py-2 px-4 w-3/4 justify-around rounded-lg ">

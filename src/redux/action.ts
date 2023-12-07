@@ -6,21 +6,17 @@ import axios from "axios";
 export const FETCH_DATA_REQUEST = "FETCH_DATA_REQUEST";
 export const FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESS";
 export const FETCH_DATA_FAILURE = "FETCH_DATA_FAILURE";
-export const FETCH_DATA_REQUEST_CATEGORY_PRODUCT =
-  "FETCH_DATA_REQUEST_CATEGORY_PRODUCT";
-export const FETCH_DATA_SUCCESS_CATEGORY_PRODUCT =
-  "FETCH_DATA_SUCCESS_CATEGORY_PRODUCT";
-export const FETCH_DATA_FAILURE_CATEGORY_PRODUCT =
-  "FETCH_DATA_FAILURE_CATEGORY_PRODUCT";
+export const FETCH_DATA_REQUEST_CATEGORY_PRODUCT ="FETCH_DATA_REQUEST_CATEGORY_PRODUCT";
+export const FETCH_DATA_SUCCESS_CATEGORY_PRODUCT ="FETCH_DATA_SUCCESS_CATEGORY_PRODUCT";
+export const FETCH_DATA_FAILURE_CATEGORY_PRODUCT ="FETCH_DATA_FAILURE_CATEGORY_PRODUCT";
+export const FETCH_DATA_REQUEST_ALL_PRODUCT = "FETCH_DATA_REQUEST_ALL_PRODUCT";
+export const FETCH_DATA_SUCCESS_ALL_PRODUCT = "FETCH_DATA_SUCCESS_ALL_PRODUCT";
+export const FETCH_DATA_FAILURE_ALL_PRODUCT = "FETCH_DATA_FAILURE_ALL_PRODUCT";
+export const FETCH_DATA_REQUEST_SINGLE_PRODUCT = "FETCH_DATA_REQUEST_SINGLE_PRODUCT";
+export const FETCH_DATA_SUCCESS_SINGLE_PRODUCT = "FETCH_DATA_SUCCESS_SINGLE_PRODUCT";
+export const FETCH_DATA_FAILURE_SINGLE_PRODUCT = "FETCH_DATA_FAILURE_SINGLE_PRODUCT";
 
-  export const FETCH_DATA_REQUEST_ALL_PRODUCT =
-  "FETCH_DATA_REQUEST_ALL_PRODUCT";
-export const FETCH_DATA_SUCCESS_ALL_PRODUCT =
-  "FETCH_DATA_SUCCESS_ALL_PRODUCT";
-export const FETCH_DATA_FAILURE_ALL_PRODUCT =
-  "FETCH_DATA_FAILURE_ALL_PRODUCT";
-
-  const apikey= import.meta.env.VITE_APIKEY
+const apikey = import.meta.env.VITE_APIKEY;
 
 export const fetchData = () => {
   return async (dispatch: Dispatch) => {
@@ -32,8 +28,7 @@ export const fetchData = () => {
         url: "https://wayfair.p.rapidapi.com/categories/list",
         params: { caid: "214970" },
         headers: {
-          "X-RapidAPI-Key":
-            apikey,
+          "X-RapidAPI-Key": apikey,
           "X-RapidAPI-Host": "wayfair.p.rapidapi.com",
         },
       };
@@ -59,8 +54,7 @@ export const fetchCategoryList = (categoryId: Number) => {
           page: "1",
         },
         headers: {
-          "X-RapidAPI-Key":
-            apikey,
+          "X-RapidAPI-Key": apikey,
           "X-RapidAPI-Host": "wayfair.p.rapidapi.com",
         },
       };
@@ -79,23 +73,22 @@ export const fetchCategoryList = (categoryId: Number) => {
   };
 };
 
-export const fetchAllProducts= ()=>{
-
+export const fetchAllProducts = () => {
   return async (dispatch: Dispatch) => {
     dispatch({ type: FETCH_DATA_REQUEST_ALL_PRODUCT });
     try {
       const options = {
-        method: 'GET',
-        url: 'https://wayfair.p.rapidapi.com/products/list',
+        method: "GET",
+        url: "https://wayfair.p.rapidapi.com/products/list",
         params: {
-          categoryId: '214970',
-          itemsPerPage: '20',
-          page: '2'
+          categoryId: "214970",
+          itemsPerPage: "20",
+          page: "2",
         },
         headers: {
-          'X-RapidAPI-Key': apikey,
-          'X-RapidAPI-Host': 'wayfair.p.rapidapi.com'
-        }
+          "X-RapidAPI-Key": apikey,
+          "X-RapidAPI-Host": "wayfair.p.rapidapi.com",
+        },
       };
 
       const response = await axios.request(options);
@@ -110,5 +103,32 @@ export const fetchAllProducts= ()=>{
       });
     }
   };
+};
 
+
+export const fetchSingleProduct=(sku:string)=>{
+  return async (dispatch:Dispatch)=>{
+    dispatch({type:FETCH_DATA_REQUEST_SINGLE_PRODUCT});
+    try{
+
+      const options = {
+        method: 'GET',
+        url: 'https://wayfair.p.rapidapi.com/products/v2/detail',
+        params: {sku: sku},
+        headers: {
+          'X-RapidAPI-Key': apikey,
+          'X-RapidAPI-Host': 'wayfair.p.rapidapi.com'
+        }
+      };
+      const response = await axios.request(options)
+      dispatch({
+        type:FETCH_DATA_SUCCESS_SINGLE_PRODUCT,
+        payload:response.data.response.data.product
+      })
+    }
+    catch(error:any){
+      dispatch({type:FETCH_DATA_FAILURE_SINGLE_PRODUCT,
+      payload:error.message})
+    }
+  }
 }

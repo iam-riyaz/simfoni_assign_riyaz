@@ -3,8 +3,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./index.css"
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { ProductCard } from "../ProductCard/ProductCard";
+import { useNavigate } from "react-router-dom";
+import { fetchSingleProduct } from "../../redux/action";
 
 interface Props{
     start?: number,
@@ -13,15 +15,18 @@ interface Props{
 
 export const Carausel: React.FC<Props> = ({start,end}) => {
   const [allProductsData, setAllProductsData] = useState([]);
-
   const { allProducts, loading, error } = useSelector((state: any) => state);
+
+  const navigate= useNavigate()
+  const dispatch= useDispatch()
+
   useEffect(() => {
     if (!loading && !error && allProducts) {
       setAllProductsData(allProducts);
     }
   }, [allProducts, loading, error]);
 
-  var settings = {
+  const settings = {
     dots: false,
     infinite: false,
     speed: 500,
@@ -56,14 +61,27 @@ export const Carausel: React.FC<Props> = ({start,end}) => {
       },
     ],
   };
+
+  const handleClick=(data:any)=>{
+
+    const sku= data.sku
+
+    dispatch(fetchSingleProduct(sku))
+
+   localStorage.setItem("productTitle",data.name)
+   
+ navigate("/productDetail")
+    
+  }
+
   return (
     <div>
      
       <Slider {...settings}>
-        {allProducts.slice(start,end).map((data: any) => {
+        {allProductsData.slice(start,end).map((data: any) => {
           return (
-            <div>
-              <ProductCard  name={data.name} brand={data.manufacturer.name} price={data.pricing.customerPrice.unitPrice.value} imgUrl={data.leadImage.id} />
+            <div onClick={()=>handleClick(data)}>
+              <ProductCard   name={data.name} brand={data.manufacturer.name} price={data.pricing.customerPrice.unitPrice.value} imgUrl={data.leadImage.id} />
             </div>
           );
         })}

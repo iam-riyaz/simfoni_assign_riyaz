@@ -3,7 +3,6 @@ import { CategoriesSection } from "../components/Categories";
 import { ProductCard } from "../components/ProductCard/ProductCard";
 import { SearchAndFilterAndSort } from "../components/Search and filter section";
 import { useSelector } from "react-redux";
-import { retry } from "@reduxjs/toolkit/query";
 import { Skeleton } from "../components/Loading/Skeleton";
 import { Loading } from "../components/Loading/Loading";
 import axios from "axios";

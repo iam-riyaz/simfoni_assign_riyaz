@@ -6,6 +6,7 @@ interface ProductCardProps {
   brand?: string;
   price?: string;
   imgUrl?: string;
+  image_url?: string;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
@@ -13,9 +14,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   name,
   price,
   imgUrl,
+  image_url
 }) => {
   const [title, setTitle] = useState(` ${name}`);
-  imgUrl = `https://assets.wfcdn.com/im/92129523/resize-h800-w800%5Ecompr-r85/2296/${imgUrl}/demo.jpg`;
+  if(imgUrl==undefined)
+  {
+    imgUrl = image_url;
+
+  }
+  else{
+    imgUrl= `https://assets.wfcdn.com/im/92129523/resize-h800-w800%5Ecompr-r85/2296/${imgUrl}/demo.jpg`
+  }
 
   useEffect(() => {
     let maxLength = 45;
@@ -26,6 +35,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     }
   }, []);
 
+  
   return (
     <>
       <div
@@ -35,7 +45,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div className=" flex flex-col    h-full">
           <div className="">
             <div className="flex p-2 justify-center bg-gray-200 rounded-lg  h-36  w-full  ">
-              <img className="h-full rounded-lg" src={imgUrl} alt="product image" />
+              <img className="h-full rounded-lg" src={ imgUrl } alt="product image" />
             </div>
             <div className="">
               <p className="text-lg font-semibold text-gray-700 leading-tight">

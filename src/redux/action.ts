@@ -15,6 +15,9 @@ export const FETCH_DATA_FAILURE_ALL_PRODUCT = "FETCH_DATA_FAILURE_ALL_PRODUCT";
 export const FETCH_DATA_REQUEST_SINGLE_PRODUCT = "FETCH_DATA_REQUEST_SINGLE_PRODUCT";
 export const FETCH_DATA_SUCCESS_SINGLE_PRODUCT = "FETCH_DATA_SUCCESS_SINGLE_PRODUCT";
 export const FETCH_DATA_FAILURE_SINGLE_PRODUCT = "FETCH_DATA_FAILURE_SINGLE_PRODUCT";
+export const FETCH_DATA_RREQUEST_SEARCH = "FETCH_DATA_RREQUEST_SEARCH"
+export const FETCH_DATA_SUCCESS_SEARCH = "FETCH_DATA_SUCCESS_SEARCH"
+export const FETCH_DATA_FAILURE_SEARCH = "FETCH_DATA_FAILURE_SEARCH"
 
 const apikey = import.meta.env.VITE_APIKEY;
 
@@ -132,3 +135,40 @@ export const fetchSingleProduct=(sku:string)=>{
     }
   }
 }
+
+export const fetchSearchData=(query:string)=>{
+  console.log({query})
+  return async(dispatch:Dispatch)=>{
+    dispatch({type:FETCH_DATA_RREQUEST_SEARCH});
+    try{
+      const options= {
+        method: 'GET',
+        url: 'https://wayfair.p.rapidapi.com/products/search',
+        params: {
+          keyword:  query,
+          sortby: '0',
+          curpage: '1',
+          itemsperpage: '48'
+        },
+        headers: {
+          'X-RapidAPI-Key': apikey,
+          'X-RapidAPI-Host': 'wayfair.p.rapidapi.com'
+        }
+      };
+
+      const response=await axios.request(options)
+
+      dispatch({type:FETCH_DATA_SUCCESS_SEARCH,
+        
+      payload: response.data.response.product_collection})
+
+      }
+      catch(error:any){
+
+        dispatch({type:FETCH_DATA_FAILURE_SEARCH,
+        payload:error.message})
+        
+      }
+    }
+  }
+

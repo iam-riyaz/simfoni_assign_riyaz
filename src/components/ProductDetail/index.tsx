@@ -70,7 +70,7 @@ export const ProductDetail = () => {
             {/* cantent div */}
             <div className=" w-3/5 ml-6">
               <p className="text-xl text-gray-700 font-semibold mt-4">{title}</p>
-              <p className="text-xs text-gray-400 ">SKU number</p>
+              <p className="text-xs text-gray-400 ">SKU Number: W002535969r</p>
               <p className="text-gray-700 font-semibold ">{singleProduct.manufacturer.name}</p>
               <div>
                 <span className=" text-gray-700 mr-1 font-semibold">

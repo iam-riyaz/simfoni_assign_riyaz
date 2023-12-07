@@ -1,3 +1,4 @@
+import { Loading } from './../components/Loading/Loading';
 import { act } from "react-dom/test-utils";
 import {
   FETCH_DATA_REQUEST,
@@ -12,6 +13,9 @@ FETCH_DATA_FAILURE_ALL_PRODUCT,
 FETCH_DATA_REQUEST_SINGLE_PRODUCT,
 FETCH_DATA_SUCCESS_SINGLE_PRODUCT,
 FETCH_DATA_FAILURE_SINGLE_PRODUCT,
+FETCH_DATA_RREQUEST_SEARCH,
+FETCH_DATA_SUCCESS_SEARCH,
+FETCH_DATA_FAILURE_SEARCH
 } from "./action.ts";
 
 interface State {
@@ -19,6 +23,7 @@ interface State {
   data: any[]; 
   allProducts:any[];
   singleProduct:any[];
+  searchedProducts:any[];
   loading: boolean;
   error: string | null;
 }
@@ -28,6 +33,7 @@ const initialState: State = {
   data: [],
   allProducts:[],
   singleProduct:[],
+  searchedProducts:[],
   loading: false,
   error: null,
 };
@@ -57,7 +63,13 @@ const reducer = (state = initialState, action: any) => {
     case FETCH_DATA_SUCCESS_SINGLE_PRODUCT:
       return{...state,loading:false,singleProduct:action.payload,error:null };
     case FETCH_DATA_FAILURE_SINGLE_PRODUCT:
-      return{...state,loading:false,error:action.payload}
+      return{...state,loading:false,error:action.payload};
+    case FETCH_DATA_RREQUEST_SEARCH:
+      return{...state,loading:true,error:null};
+    case FETCH_DATA_SUCCESS_SEARCH:
+      return{...state,loading:false ,searchedProducts:action.payload,error:null};
+    case FETCH_DATA_FAILURE_SEARCH:
+      return{...state,loading:false,error:action.payload};
     default:
       return state;
   }

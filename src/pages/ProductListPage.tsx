@@ -2,15 +2,19 @@ import { useEffect, useState } from "react";
 import { CategoriesSection } from "../components/Categories";
 import { ProductCard } from "../components/ProductCard/ProductCard";
 import { SearchAndFilterAndSort } from "../components/Search and filter section";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { Skeleton } from "../components/Loading/Skeleton";
 import { Loading } from "../components/Loading/Loading";
 import axios from "axios";
+import { fetchSingleProduct } from "../redux/action";
+import { useNavigate } from "react-router-dom";
 
 export const ProductListPage: React.FC = () => {
   const [productListData, setProductListData]: any = useState([]);
   const [page, setPage] = useState(1);
   const [isloading, setIsLoading] = useState(false);
+  const dispatch= useDispatch()
+  const navigate= useNavigate()
 
   const { productList, allProducts, loading, error } = useSelector(
     (state: any) => state
@@ -93,6 +97,19 @@ export const ProductListPage: React.FC = () => {
     };
   }, []);
 
+
+  const handleClick=(data:any)=>{
+
+    const sku= data.sku
+
+    dispatch(fetchSingleProduct(sku))
+
+   localStorage.setItem("productTitle",data.name)
+   
+ navigate("/productDetail")
+    
+  }
+
   return (
     <>
       <div className="pt-4">
@@ -111,12 +128,14 @@ export const ProductListPage: React.FC = () => {
                   <div className="grid lg:grid-cols-5 md:grid-cols-2 md:gap-x-3 lg:gap-x-10 gap-y-6 w-full ">
                     {productListData.map((data: any) => {
                       return (
+                        <div onClick={()=>handleClick(data)}>
                         <ProductCard
-                          name={data.name}
-                          brand={data.manufacturer.name}
-                          price={data.pricing.customerPrice.unitPrice.value}
-                          imgUrl={data.leadImage.id}
+                          name={data?.name}
+                          brand={data?.manufacturer?.name}
+                          price={data?.pricing?.customerPrice?.unitPrice?.value}
+                          imgUrl={data?.leadImage?.id}
                         />
+                        </div>
                       );
                     })}
                   </div>

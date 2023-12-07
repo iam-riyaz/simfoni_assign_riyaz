@@ -1,12 +1,15 @@
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { ProductCard } from "../ProductCard/ProductCard";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { fetchSingleProduct } from "../../redux/action";
 
 export const AllIteams = () => {
   const [allProductsData, setAllProductsData] = useState([]);
   const navigate= useNavigate()
+  const dispatch= useDispatch()
+
 
   const { allProducts, loading, error } = useSelector((state: any) => state);
 
@@ -21,6 +24,20 @@ export const AllIteams = () => {
       setAllProductsData(allProducts);
     }
   }, [allProducts, loading, error]);
+
+
+  const handleClickSingle=(data:any)=>{
+
+    const sku= data.sku
+
+    dispatch(fetchSingleProduct(sku))
+
+   localStorage.setItem("productTitle",data.name)
+   
+ navigate("/productDetail")
+    
+  }
+
 
   return (
     <>
@@ -42,7 +59,7 @@ export const AllIteams = () => {
           {/*card div  */}
           <div className="grid lg:grid-cols-5 md:grid-cols-2 sm:grid-cols-1 md:gap-x-3 lg:gap-x-10 gap-y-6 w-full ">
             {allProductsData.slice(0,10).map((data:any) => {
-              return <ProductCard  name={data.name} brand={data.manufacturer.name} price={data.pricing.customerPrice.unitPrice.value} imgUrl={data.leadImage.id} />;
+              return (<div onClick={()=>handleClickSingle(data)}> <ProductCard  name={data.name} brand={data.manufacturer.name} price={data.pricing.customerPrice.unitPrice.value} imgUrl={data.leadImage.id} /></div>);
             })}
           </div>
         </div>

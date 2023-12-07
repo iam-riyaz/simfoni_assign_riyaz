@@ -77,7 +77,7 @@ export const ProductDetail = () => {
                   Price:
                 </span>
                 <span className="text-2xl text-gray-700 font-semibold">
-                  ${singleProduct.pricing.listPrice.display.value}
+                  ${singleProduct.pricing.listPrice?.display?.value}
                 </span>
                 <span className="text-sm text-gray-400 ">/each</span>
               </div>

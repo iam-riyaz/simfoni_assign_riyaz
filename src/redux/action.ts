@@ -1,4 +1,4 @@
-import { CategoriesSection } from "./../components/Categories/index";
+
 
 import { Dispatch } from "redux";
 import axios from "axios";

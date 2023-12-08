@@ -1,4 +1,4 @@
-import { Loading } from "./components/Loading/Loading.tsx";
+
 import { Skeleton } from "./components/Loading/Skeleton.tsx";
 import Navbar from "./components/Navbar/Navbar.tsx";
 import { fetchAllProducts, fetchData } from "./redux/action.ts";

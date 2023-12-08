@@ -9,7 +9,7 @@ export const BestSellingCategory = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { data,productList, loading, error } = useSelector((state: any) => state);
+  const { data, loading, error } = useSelector((state: any) => state);
   useEffect(() => {
     if (
       !loading &&

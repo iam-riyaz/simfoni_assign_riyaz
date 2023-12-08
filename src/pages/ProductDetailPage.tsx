@@ -1,4 +1,4 @@
-import React from "react";
+
 import { CategoriesSection } from "../components/Categories";
 import { PeopleSearchFor } from "../components/PeopleSearchFor";
 import { ProductDetail } from "../components/ProductDetail";

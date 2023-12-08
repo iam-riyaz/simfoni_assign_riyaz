@@ -12,13 +12,10 @@
   }
   ```
 */
-import { Fragment, useState } from "react";
-import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
+import {  Popover } from "@headlessui/react";
 import {
   Bars3Icon,
   MagnifyingGlassIcon,
-  ShoppingBagIcon,
-  XMarkIcon,
   WalletIcon,
   HeartIcon,
   ShoppingCartIcon,
@@ -158,12 +155,10 @@ const navigation = {
   ],
 };
 
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(" ");
-}
+
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
 
   return (
     <div className="bg-white">
@@ -176,7 +171,7 @@ export default function Navbar() {
               <button
                 type="button"
                 className="relative rounded-md bg-white p-2 text-gray-400 "
-                onClick={() => setOpen(true)}
+                // onClick={() => setOpen(true)}
               >
                 <span className="absolute -inset-0.5" />
                 <span className="sr-only">Open menu</span>

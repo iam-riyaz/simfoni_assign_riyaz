@@ -5,7 +5,7 @@ import { Skeleton } from "../Loading/Skeleton";
 
 export const ProductDetail = () => {
 
-  const [productData,setProductData]=useState({})
+  
   const [mainImgUrl,setMainImgUrl]=useState("")
     const title= localStorage.getItem("productTitle")
     const {singleProduct,error,loading} = useSelector((state:any)=>state)
@@ -27,7 +27,6 @@ export const ProductDetail = () => {
       if(!loading && !error && singleProduct)
       {
         console.log({singleProduct})
-        setProductData(singleProduct)
         setMainImgUrl(singleProduct.images[0].id)
 
       }

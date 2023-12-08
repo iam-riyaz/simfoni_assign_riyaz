@@ -1,5 +1,4 @@
-import { Loading } from './../components/Loading/Loading';
-import { act } from "react-dom/test-utils";
+
 import {
   FETCH_DATA_REQUEST,
   FETCH_DATA_SUCCESS,

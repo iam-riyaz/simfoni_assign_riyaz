@@ -1,11 +1,10 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {  useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchSearchData } from "../../redux/action";
 
 export const SearchBox = () => {
-  const [productData, setProductData] = useState([]);
   const [serachedString, setSearchStirng] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();

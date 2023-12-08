@@ -1,15 +1,14 @@
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import axios from "axios";
+
 import { useEffect, useState } from "react";
-import { AllCategory } from "./AllCategory";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchData } from "../../redux/action";
-import { SortDropdown } from "../Search and filter section/SortDropdown";
+
+import {  useSelector } from "react-redux";
+
 
 export const CategoriesSection = () => {
   const [category, setCategory] = useState([]);
-  const [isOpen, setIsOpen] = useState(true);
-  const dispatch = useDispatch();
+
+ 
   const { data, loading, error } = useSelector((state: any) => state);
 
   useEffect(() => {

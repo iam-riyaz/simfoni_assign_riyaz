@@ -43,11 +43,10 @@ export const BestSellingCategory = () => {
                   onClick={() => handleClick(e)}
                   className="border p-2 flex flex-col items-center justify-center rounded-lg shadow-md cursor-pointer"
                 >
-                  <img
-                    src="https://www.bigbasket.com/media/uploads/p/l/10000074-2_2-fresho-cauliflower.jpg?tr=w-640,q=80"
-                    alt=""
-                  />
-                  <p className="text-lg font-semibold">{e.displayName}</p>
+                  <div className="bg-gray-100 rounded-lg px-10 py-10 flex justify-center items-center">
+                    <span className="tracking-wide text-xl text-teal-300 font-extrabold">{e.displayName.split(" ")[0]}</span>
+                  </div>
+                  <p className="text-gray-500 text-lg font-semibold">{e.displayName}</p>
                 </div>
               );
             })}

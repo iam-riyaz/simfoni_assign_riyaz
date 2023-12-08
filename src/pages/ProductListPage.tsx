@@ -35,6 +35,7 @@ export const ProductListPage: React.FC = () => {
       setIsSearchedPage(true);
       setPageTitle(title);
       if (!loading && !error && searchedProducts) {
+        setProductListData(searchedProducts)
         console.log({ searchedProducts });
       }
     } else if (title) {
@@ -148,7 +149,7 @@ export const ProductListPage: React.FC = () => {
                             </div>
                           );
                         })
-                      : searchedProducts.splice(0,20).map((data: any) => {
+                      : productListData.splice(0,20).map((data: any) => {
                           return (
                             <div onClick={() => handleClick(data)}>
                               <ProductCard
